@@ -1,4 +1,5 @@
 from game import Game
+from ai import EasyAI
 
 
 def prompt_choice(prompt_text, options):
@@ -51,22 +52,28 @@ def main():
     )
     num_players = int(mode)
 
+    ai = None
     if num_players == 1:
         diff = prompt_choice(
             "Please select difficulty",
             {"1": "Easy", "2": "Hard"},
         )
-        print("Single player mode will be available in the next branch!")
-        return
+        if diff == "1":
+            ai = EasyAI()
 
-    # Two player game
+    # Start game
     game = Game()
     while not game.is_over():
         print_board(game.board)
-        row, col = get_player_move(game.current_player)
 
-        if not game.play_turn(row, col):
-            print("Invalid move: that cell is taken or off the board. Try again!\n")
+        if ai and game.current_player == "O":
+            row, col = ai.choose_move(game.board, "O")
+            print(f"Computer (O) plays: {row + 1} {col + 1}\n")
+            game.play_turn(row, col)
+        else:
+            row, col = get_player_move(game.current_player)
+            if not game.play_turn(row, col):
+                print("Invalid move: that cell is taken or off the board. Try again!\n")
 
     print_board(game.board)
     if game.winner:
