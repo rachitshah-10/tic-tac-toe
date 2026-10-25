@@ -40,3 +40,9 @@ A CLI based tic-tac-toe game implemented in Python supporting two player mode an
   3. A dictionary with `(row, col)` coordinate tuples as keys.
 - **Choice**: Option 2 (2D list of lists).
 - **Why**: The board methods receive row and column as separate arguments. A 2D list makes accessing rows, columns, and diagonals straightforward and readable without needing index arithmetic or dictionary overhead.
+
+## What Changed
+A few minor implementation details evolved from the initial plan to keep the code simpler and more maintainable:
+- **Input handling refactor:** Extracted `prompt_choice()` in `main.py` to eliminate duplicate menu loops for player and difficulty selection.
+- **Turn alternation encapsulation:** Made `_switch_player()` internal to `Game` so turn switching is strictly controlled by `play_turn()`.
+
