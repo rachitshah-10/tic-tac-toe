@@ -1,5 +1,5 @@
 from game import Game
-from ai import EasyAI
+from ai import EasyAI, HardAI
 
 
 def prompt_choice(prompt_text, options):
@@ -60,6 +60,8 @@ def main():
         )
         if diff == "1":
             ai = EasyAI()
+        else:
+            ai = HardAI()
 
     # Start game
     game = Game()
