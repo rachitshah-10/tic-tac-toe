@@ -4,6 +4,12 @@ from board import Board
 from ai import AI, EasyAI, HardAI
 
 
+def test_ai_base_class_cannot_be_instantiated():
+    """Verify that the abstract AI class cannot be created directly."""
+    with pytest.raises(TypeError):
+        AI()
+
+
 def test_easy_ai_returns_empty_cell():
     """Verify that EasyAI always picks a valid available cell."""
     board = Board()
