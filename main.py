@@ -1,5 +1,5 @@
 from game import Game
-from ai import EasyAI, HardAI
+from ai import EasyAI, HardAI, MediumAI
 
 
 def prompt_choice(prompt_text, options):
@@ -56,12 +56,9 @@ def main():
     if num_players == 1:
         diff = prompt_choice(
             "Please select difficulty",
-            {"1": "Easy", "2": "Hard"},
+            {"1": "Easy", "2": "Hard", "3": "Medium"},
         )
-        if diff == "1":
-            ai = EasyAI()
-        else:
-            ai = HardAI()
+        ai = {"1": EasyAI, "2": HardAI, "3": MediumAI}[diff]()
 
     # Start game
     game = Game()

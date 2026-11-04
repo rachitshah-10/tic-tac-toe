@@ -22,6 +22,25 @@ class EasyAI(AI):
         return self.rng.choice(empty)
 
 
+class MediumAI(AI):
+    """AI that randomly mixes minimax and random moves, turn by turn."""
+
+    def __init__(self, rng=None, minimax_chance=0.5):
+        """Set the per-turn probability (0 to 1) of playing minimax."""
+        if not 0 <= minimax_chance <= 1:
+            raise ValueError("minimax_chance must be between 0 and 1")
+        super().__init__(rng)
+        self.minimax_chance = minimax_chance
+        self._easy = EasyAI(self.rng)
+        self._hard = HardAI(self.rng)
+
+    def choose_move(self, board, mark):
+        """Pick minimax with probability minimax_chance, else a random cell."""
+        if self.rng.random() < self.minimax_chance:
+            return self._hard.choose_move(board, mark)
+        return self._easy.choose_move(board, mark)
+
+
 class HardAI(AI):
     def choose_move(self, board, mark):
         """Pick the best move using minimax."""
