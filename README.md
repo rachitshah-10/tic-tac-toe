@@ -1,6 +1,6 @@
 # Tic-Tac-Toe
 
-A terminal-based 3x3 Tic-Tac-Toe game written in Python. It supports two players taking turns locally or a single player competing against an Easy (random) or Hard (minimax) computer opponent.
+A terminal-based 3x3 Tic-Tac-Toe game written in Python. It supports two players taking turns locally or a single player competing against an Easy (random), Medium (randomly mixes random and minimax moves each turn) or Hard (minimax) computer opponent.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ python main.py
 ### How to Play
 
 1. Choose your game mode:
-   - `1` for Single Player (then choose `1` for Easy or `2` for Hard)
+   - `1` for Single Player (then choose `1` for Easy, `2` for Hard or `3` for Medium)
    - `2` for Two Players
 2. On your turn, enter your move as row and column numbers from 1 to 3, separated by a space (e.g. `2 3` for row 2, column 3).
 3. The board is updated and displayed after every valid move.
